@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    background-color: #F2EDD8;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior: none;
+  }
+}
+
+/* ── CSS custom properties (color tokens) ───────── */
+:root {
+  --bg-page:    #F2EDD8;
+  --bg-note:    #FBF3A2;
+  --bg-note-lt: #FDF6C3;
+  --ink:        #5C4A1E;
+  --ink-mid:    #7A6B30;
+  --ink-lt:     #9A8A50;
+  --ink-ghost:  #B8A860;
+  --divider:    rgba(180,155,50,0.18);
+  --shadow:     rgba(92,74,30,0.13);
+}
+
+/* ── Paper curl ─────────────────────────────────── */
+.paper-curl {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Waveform bars ──────────────────────────────── */
+@keyframes bar-bounce {
+  0%, 100% { transform: scaleY(0.2); }
+  50%       { transform: scaleY(1);   }
+}
+.wave-bar {
+  display: inline-block;
+  width: 2.5px;
+  height: 16px;
+  background: #8A7A40;
+  border-radius: 2px;
+  animation: bar-bounce 0.75s ease-in-out infinite;
+  transform-origin: center;
+}
+.wave-bar:nth-child(1)  { animation-delay: 0.00s; }
+.wave-bar:nth-child(2)  { animation-delay: 0.07s; }
+.wave-bar:nth-child(3)  { animation-delay: 0.14s; }
+.wave-bar:nth-child(4)  { animation-delay: 0.21s; }
+.wave-bar:nth-child(5)  { animation-delay: 0.28s; }
+.wave-bar:nth-child(6)  { animation-delay: 0.35s; }
+.wave-bar:nth-child(7)  { animation-delay: 0.42s; }
+.wave-bar:nth-child(8)  { animation-delay: 0.35s; }
+.wave-bar:nth-child(9)  { animation-delay: 0.28s; }
+.wave-bar:nth-child(10) { animation-delay: 0.21s; }
+.wave-bar:nth-child(11) { animation-delay: 0.14s; }
+.wave-bar:nth-child(12) { animation-delay: 0.07s; }
+.wave-bar:nth-child(13) { animation-delay: 0.00s; }
+.wave-bar:nth-child(14) { animation-delay: 0.07s; }
+.wave-bar:nth-child(15) { animation-delay: 0.14s; }
+.wave-bar:nth-child(16) { animation-delay: 0.21s; }
+.wave-bar:nth-child(17) { animation-delay: 0.28s; }
+.wave-bar:nth-child(18) { animation-delay: 0.35s; }
+
+/* ── Fade animations ────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+.fade-up { animation: fadeUp 0.2s ease-out both; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fade-in { animation: fadeIn 0.15s ease-out both; }
+
+/* Voice card — slide up from nothing, no translate drift */
+@keyframes voiceIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+.voice-card { animation: voiceIn 0.22s cubic-bezier(0.34,1.56,0.64,1) both; }
+
+/* ── Page peel (bottom-right corner) ───────────── */
+.page-peel {
+  position: fixed;
+  bottom: 14px;
+  right: 14px;
+  width: 52px;
+  height: 52px;
+  pointer-events: none;
+  z-index: 0;
+}
+.page-peel::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(
+    225deg,
+    #e8d96a 0%,
+    #f5ee9a 40%,
+    #fdf7b8 100%
+  );
+  clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
+  border-radius: 0 0 4px 0;
+  box-shadow:
+    -3px -3px 8px rgba(160,140,40,0.18),
+    -1px -1px 3px rgba(160,140,40,0.10);
+}
+.page-peel::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 52px;
+  height: 52px;
+  background: conic-gradient(
+    from 225deg at 100% 100%,
+    #c9b840 0deg,
+    #e2d060 25deg,
+    #f0e680 40deg,
+    transparent 42deg
+  );
+  clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
+  border-radius: 0 0 4px 0;
+  filter: drop-shadow(-2px -2px 4px rgba(100,85,10,0.22));
+}
+
+/* ── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #C8B850; border-radius: 2px; }
+
+/* ── Handwriting font ───────────────────────────── */
+.wf { font-family: 'Caveat', cursive; }
+
+/* ── Textarea reset ─────────────────────────────── */
+textarea {
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  font-family: 'Caveat', cursive;
+}
+textarea::placeholder { color: #C0A840; opacity: 0.70; }
