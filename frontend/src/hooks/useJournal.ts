@@ -3,7 +3,6 @@ import { JournalEntry, Attachment } from '../types';
 
 const BASE = import.meta.env.VITE_API_URL;
 const HEADERS = {
-  'Authorization': `Bearer ${import.meta.env.VITE_API_KEY}`,
   'Content-Type': 'application/json',
 };
 
