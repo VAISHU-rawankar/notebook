@@ -13,7 +13,7 @@
   ],
   "rewrites": [
     {
-      "source": "/journal/:path*",
+      "source": "/_/backend/:path*",
       "destination": "/backend/server.ts"
     },
     {
