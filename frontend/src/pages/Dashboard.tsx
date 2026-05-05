@@ -249,7 +249,7 @@ export default function Dashboard({
 
             {/* Entry cards in this month */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {group.map((entry, idx) => {
+              {group.map((entry) => {
                 const isFirst = entries[0]?.id === entry.id;
                 return (
                   <div

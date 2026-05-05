@@ -32,9 +32,9 @@ function fmtTime(iso: string) {
     hour: 'numeric', minute: '2-digit', hour12: true,
   });
 }
-function fmtSec(s: number) {
-  return `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
-}
+// function fmtSec(s: number) {
+//   return `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+// }
 
 // ── Calendar constants ────────────────────────────────
 const DAYS   = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -126,7 +126,7 @@ function Calendar({ selected, onSelect, onClose }: {
 
 // ── Main component ────────────────────────────────────
 export default function HomeEditor({
-  entry, onUpdate, onUpdateMood, onAddAttachment, onRemoveAttachment, onOpenMenu, onOpenSettings,
+  entry, onUpdate, onAddAttachment, onRemoveAttachment, onOpenMenu, onOpenSettings,
 }: Props) {
   const [content, setContent]       = useState(entry.content);
   const [showAttach, setShowAttach] = useState(false);
@@ -145,7 +145,7 @@ export default function HomeEditor({
   const [voiceOpen, setVoiceOpen]     = useState(false);
   const [voiceSec, setVoiceSec]       = useState(0);
   const [interimText, setInterimText] = useState('');
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<any>(null);
   const timerRef       = useRef<ReturnType<typeof setInterval> | null>(null);
   const accumulatedRef = useRef('');
 
@@ -198,8 +198,8 @@ export default function HomeEditor({
   // ── Voice start / stop ────────────────────────────
   const startVoice = () => {
     const SR =
-      (window as unknown as Record<string, unknown>)['SpeechRecognition'] as typeof SpeechRecognition
-      || (window as unknown as Record<string, unknown>)['webkitSpeechRecognition'] as typeof SpeechRecognition;
+      (window as any)['SpeechRecognition']
+      || (window as any)['webkitSpeechRecognition'];
     if (!SR) return;
 
     accumulatedRef.current = content;
@@ -209,7 +209,7 @@ export default function HomeEditor({
     rec.interimResults = true;
     rec.lang           = 'en-US';
 
-    rec.onresult = (e: SpeechRecognitionEvent) => {
+    rec.onresult = (e: any) => {
       let finalChunk = '', interim = '';
       for (let i = e.resultIndex; i < e.results.length; i++) {
         if (e.results[i].isFinal) finalChunk += e.results[i][0].transcript;

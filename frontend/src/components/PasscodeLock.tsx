@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Delete, Lock } from 'lucide-react';
 
 const PASSCODE_KEY = 'journal_passcode';
