@@ -1,0 +1,14 @@
+{
+  "name": "journal-app",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "cd frontend && npm install --prefer-offline && npm run dev",
+    "build": "cd frontend && npm install --prefer-offline && npm run build",
+    "build:frontend": "cd frontend && npm install --prefer-offline && npm run build",
+    "build:backend": "echo 'Backend is plain Node.js — no build step needed'",
+    "start:backend": "cd backend && node server.js",
+    "install:all": "cd frontend && npm install && cd ../backend && npm install"
+  }
+}
